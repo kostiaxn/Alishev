@@ -3,13 +3,15 @@ package SerializationSecond;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class ReadObject {
     public static void main(String[] args) {
-        try {
-            FileInputStream fis = new FileInputStream("peopleSecond.bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+        try (ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(Paths.get("peopleSecond.bin")))){ //try with resources
+//            FileInputStream fis = new FileInputStream("peopleSecond.bin");
+//            ObjectInputStream ois = new ObjectInputStream(fis);
             Person[] people = (Person[]) ois.readObject();
 
 
@@ -21,7 +23,7 @@ public class ReadObject {
 //            }
             System.out.println(Arrays.toString(people));
 
-            ois.close();
+//            ois.close(); не нужен с try with resources
 
         } catch (IOException e) {
             throw new RuntimeException(e);
