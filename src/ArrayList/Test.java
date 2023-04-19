@@ -9,6 +9,8 @@ public class Test {
         for(int i = 0; i < 10; i++){
             list.add(i);
         }
+
+
         System.out.println(list);
 
         System.out.println(list.get(0));
