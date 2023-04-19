@@ -1,4 +1,4 @@
-package WrtileToFile;
+package WriteToFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
