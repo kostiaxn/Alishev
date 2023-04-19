@@ -1,11 +1,14 @@
 package LinkedList;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Node;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
+
         List<Integer> linkedList = new LinkedList<>();
 //        linkedList.add(1);
 //        linkedList.get(0);
