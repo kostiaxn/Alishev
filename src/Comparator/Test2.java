@@ -17,7 +17,7 @@ public class Test2 {
     }
     private static void addElements(Collection collection){
         collection.add(new Animal(4,"Bob"));
-        collection.add(new Animal(2,"Tom"));
+        collection.add(new Animal(2,"To"));
         collection.add(new Animal(1,"Katy"));
         collection.add(new Animal(3,"George"));
     }
