@@ -8,21 +8,20 @@ public class Test {
         Test test = new Test();
         test.doWork();
     }
-    public synchronized void increment() throws InterruptedException {// synchronized может быть только в методе. Метод синхронизованный
-        Thread.sleep(1000);
-        counter++;
+
+    public void increment() {// synchronized может быть только в методе. Метод синхронизованный
+        synchronized (this) {
+            counter++;
+        }
     }
+
+
     public void doWork() throws InterruptedException {
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 for (int i = 0; i < 10000; i++) {
-                    try {
-                        increment();
-                        System.out.println(i);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    increment();
                 }
             }
         });
@@ -30,12 +29,7 @@ public class Test {
             @Override
             public void run() {
                 for (int i = 0; i < 10000; i++) {
-                    try {
-                        increment();
-                        System.out.println(i);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
+                    increment();
                 }
 //                    counter = counter + 1; // counter++ операция не атомарна. Работает не в один такт.
             }
