@@ -20,10 +20,10 @@ public class Test {
     public static void main(String[] args) throws InterruptedException {
 
         // Создаем пул из двух потоков с помощью Executors.newFixedThreadPool()
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
 
         // Добавляем 5 задач в пул потоков с помощью executorService.submit()
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 100; i++) {
             executorService.submit(new Work(i));
         }
 
