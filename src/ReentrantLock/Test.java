@@ -1,5 +1,8 @@
 package ReentrantLock;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Test {
     public static void main(String[] args) throws InterruptedException {
         Task task = new Task();
@@ -27,7 +30,7 @@ public class Test {
 
 class Task {
     private int counter;
-
+    private Lock lock = new ReentrantLock();
     private void increment() {
         for (int i = 0; i < 10000; i++) {
             counter++;
@@ -35,11 +38,15 @@ class Task {
     }
 
     public void firstThread() {
+        lock.lock();
         increment();
+        lock.unlock();
     }
 
     public void secondThread() {
+        lock.lock();
         increment();
+        lock.unlock();
     }
 
     public void showCounter() {
