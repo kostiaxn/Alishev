@@ -1,8 +1,7 @@
 package Lambda;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import javax.print.attribute.SetOfIntegerSyntax;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Test3 {
@@ -72,6 +71,20 @@ public class Test3 {
         System.out.println(sum1);
         System.out.println(sum2);
 
+        int[] arr4 = new int[10];
+        fillArr(arr4);
+
+        int[] newArray = Arrays.stream(arr4).filter(a -> a % 2 !=0).map(a -> a * 2).toArray();
+        System.out.println(Arrays.toString(newArray));
+
+
+        Set<Integer> set = new HashSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(5);
+        System.out.println(set);
+        set = set.stream().map(a -> a * 3).collect(Collectors.toSet());
+        System.out.println(set);
     }
 
     private static void fillList(List<Integer> list) {
