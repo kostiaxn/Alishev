@@ -1,4 +1,4 @@
-package Lamda;
+package Lambda;
 
 
 interface Executable {
