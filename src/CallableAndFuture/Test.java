@@ -1,29 +1,37 @@
 package CallableAndFuture;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.Random;
+import java.util.concurrent.*;
 
 public class Test {
-    private static int result;
 
-    public static void main(String[] args) throws InterruptedException {
+
+    public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(1);
-        executorService.submit(new Runnable() {
+        Future<Integer> future = executorService.submit(new Callable<Integer>() { // когда поток закончит, результат будет в future
+
             @Override
-            public void run() {
+            public Integer call() throws Exception {
                 System.out.println("Starting");
                 try {
                     Thread.sleep(3000);
-                } catch (InterruptedException e) {
+                } catch (InterruptedException e){
                     e.printStackTrace();
                 }
                 System.out.println("Finished");
-                result = 5;
+                Random random = new Random();
+                return random.nextInt(10);
             }
         });
+
         executorService.shutdown();
-        executorService.awaitTermination(1, TimeUnit.DAYS);
-        System.out.println(result);
+        try {
+            int result = future.get(); // get дожидается окончания выполнения потока
+            System.out.println(result);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
